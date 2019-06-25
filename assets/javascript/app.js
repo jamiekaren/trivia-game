@@ -11,14 +11,21 @@ let tonySound = new Audio("assets/sounds/avengers02.mp3");
 let questions = [
     {
         question: "Who is the strongest Avenger?",
-        possible: ["Hulk", "Thor", "Black Widow", "Scarlet Witch"],
+        possible: ["Hulk", " Thor ", " Black Widow ", " Scarlet Witch"],
         answer: "Hulk",
-        radio_button: "",
+        radio_button: function radio (){
+            this.forEach(function (object) {
+            var radioBtn = $('<input type="radio" name="q1" />');
+            $(radioBtn).append(object.possible);
+
+            });
+            
+        },
     },
 
     {
         question: "What's Captain Marvel's first name?",
-        possible: ["Wanda", "Natasha", "Pepper", "Carol"],
+        possible: ["Wanda", " Natasha ", " Pepper ", " Carol"],
         answer: "Carol",
         radio_button: "",
 
@@ -36,24 +43,34 @@ let none = [];
 //Need to add questions to this div
 function startGame() {
     questions.forEach(function (object) {
-        $("#start").html(object.question);
-        $("#start").html(object.possible);
-        possible.forEach().prepend(radio_button);
-    });
+        
+        // for (let q = 0; q < questions.length; q++) {
+        $("#start").append(object.question + "<br>");
+        console.log("These are your questions!");
+
+        $("#start").append(object.possible + "<br>");
+        // object.possible.forEach().prepend(radio_button);
+        console.log("These are your answers!");
+        });
+    // });
+
+
 };
 
 let t = 100;
 
 
-//Game Over function
+//Game Over function and end of timer
 function gameOver() {
     if (t <= 0) {
         $("#start").empty();
-        $("#start").text("You got " + wrong + " questions wrong."
+        $("#start").append("You got " + wrong + " questions wrong."
             + "<br>" + "You got " + right + "questions correct."
             + "<br>" + "You didn't answer " + none + " questions."
         )
     };
+
+    console.log("Game over!");
 
 };
 
@@ -65,6 +82,7 @@ $("#start-button").click(function () {
     tonySound.play();
     console.log('Avengers Assemble!');
     $("#start").empty();
+    startGame();
 
     setTimeout(countDown, 1000);
 
@@ -73,15 +91,15 @@ $("#start-button").click(function () {
         if (t > 0) {
             setTimeout(countDown, 1000);
         }
-        $("#counter").html("You have " + t + " remaining seconds left to answer.");
+        $("#counter").html("You have " + t + " seconds remaining left to answer.");
         console.log(t);
-
-
+        gameOver();
     };
+    
+    startGame();
+    
 
-
-
-
+    
 
 
 
