@@ -9,24 +9,53 @@ let tonySound = new Audio("assets/sounds/avengers02.mp3");
 // How to save questions for trivia, by Objects or an array of objects?
 
 let questions = [
-{ 
-    question: "Who is the strongest Avenger?",
-    answer: "Hulk",
-    radio_button: "",
-},
+    {
+        question: "Who is the strongest Avenger?",
+        possible: ["Hulk", "Thor", "Black Widow", "Scarlet Witch"],
+        answer: "Hulk",
+        radio_button: "",
+    },
 
-{ 
-    question: "What's Captain Marvel's first name?",
-    answer: "Mary",
-    radio_button: "",
+    {
+        question: "What's Captain Marvel's first name?",
+        possible: ["Wanda", "Natasha", "Pepper", "Carol"],
+        answer: "Carol",
+        radio_button: "",
 
-},
+    },
 
 ]
 
-userAnswer = "";
+let right = [];
+let wrong = [];
+let none = [];
 
-timerStart = 0;
+//Need to start a timer, maybe append to Header div
+
+
+//Need to add questions to this div
+function startGame() {
+    questions.forEach(function (object) {
+        $("#start").html(object.question);
+        $("#start").html(object.possible);
+        possible.forEach().prepend(radio_button);
+    });
+};
+
+let t = 100;
+
+
+//Game Over function
+function gameOver() {
+    if (t <= 0) {
+        $("#start").empty();
+        $("#start").text("You got " + wrong + " questions wrong."
+            + "<br>" + "You got " + right + "questions correct."
+            + "<br>" + "You didn't answer " + none + " questions."
+        )
+    };
+
+};
 
 
 
@@ -37,16 +66,24 @@ $("#start-button").click(function () {
     console.log('Avengers Assemble!');
     $("#start").empty();
 
-//Need to start a timer, maybe append to Header div
+    setTimeout(countDown, 1000);
+
+    function countDown() {
+        t--;
+        if (t > 0) {
+            setTimeout(countDown, 1000);
+        }
+        $("#counter").html("You have " + t + " remaining seconds left to answer.");
+        console.log(t);
 
 
-//Need to add questions to this div    
-    $("#start").html(questions)
+    };
+
+
+
+
+
 
 
 });
 
-function startGame {
-    
-
-};

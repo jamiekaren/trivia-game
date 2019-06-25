@@ -14,17 +14,25 @@ body {
       color: white;
   }
 
-  #trivia-body {
+  #header, #start, #counter {
     background: rgba(0, 0, 0, 0.7);  
   }
 
   h1 {
-    color: darkred;
-    background: rgba(0, 0, 0, 0.7);
+    color: whitesmoke;
     text-align: center;
   }
 
-  #header {
-    height: 300px;
+  #counter {
+    font-size: 20px;
+  }
 
+  #top {
+    height: 100px;
+  }
+
+  #bottom {
+    height: 300px;
+    text-align: center;
+  }
  
