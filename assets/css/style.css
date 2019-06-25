@@ -1,0 +1,30 @@
+body {
+    background-image: url(../../assets/images/avengers-endgame01.jpg);
+    padding-top:10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+  
+  }
+
+  div {
+      border: solid;
+      size: 10px;
+      color: white;
+  }
+
+  #trivia-body {
+    background: rgba(0, 0, 0, 0.7);  
+  }
+
+  h1 {
+    color: darkred;
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+  }
+
+  #header {
+    height: 300px;
+
+ 
