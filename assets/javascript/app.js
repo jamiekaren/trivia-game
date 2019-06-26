@@ -16,7 +16,7 @@ let questions = [
         radio_button: function () {
             this.forEach(function (object) {
                 var radioBtn = $('<input type="radio" name="q1" />');
-                $(radioBtn).append(object.possible);
+                $("#start").append(radioBtn + object.possible);
 
             });
 
@@ -33,46 +33,91 @@ let questions = [
 
 ]
 
-let right = [];
-let wrong = [];
-let none = [];
+let answers = [];
+let correct = 0;
+let wrong = 0;
+let blank = 0;
+
+//setting time variable to 30 seconds...
+let time = 30;
 
 
-let time = 100;
-//Need to start a timer, maybe append to Header div
+//A countdown function...
+// If timer is greater than 0, run countdown where time - 1, sets a timeout of 500 milliseconds?? 
+// GameOver works when set in countdown under time!
+
+
 function countDown() {
-    time--;
+
     if (time > 0) {
         setTimeout(countDown, 500);
     }
+    setGameOver();
+    time--;
+
     $("#counter").html("You have " + time + " seconds remaining left to answer.");
     console.log(time);
 };
 
 
+
+
 //Need to add questions to this div
 function startGame() {
     questions.forEach(function (object) {
-
-
-        $("#start").append(object.question + "<br>");
-        console.log("These are your questions!");
-
-        $("#start").append(object.possible + "<br>");
-        // object.possible.forEach().prepend(radio_button);
-        console.log("These are your answers!");
-        // radio_button(object);
-
+        $("#start").append(object.question + "<p>" + object.possible + "</p>");
     });
-    // });
 
 };
 
 
+function setUserAnswers() {
+    let input = $("#question-input").val().trim();
+
+    answers.push(input);
+
+    if (answers == questions.answer) {
+        right++;
+    }
+    else if (answers != questions.answer) {
+        wrong++;
+    }
+
+};
+
+
+// //Need to add questions to this div
+// function startGame() {
+//     questions.forEach(function (object) {
+
+//         $("#start").append(object.question + "<p>");
+//         radio_button(questions);
+//     });
+
+// };
+
+
+
+// function startGame() {
+//     questions.forEach(function (object) {
+
+//         let radioBtn = $('<input type="radio"/>');
+
+//        $("#start").append(object.question + "<p>")
+
+//        $("#start").html(radioBtn).append(obj.possible);
+
+//     //    + object.possible + "</p>");
+//     });
+
+// };
+
+
+
 //Game Over function and end of timer
 function setGameOver() {
-    
-    if (countDown <= 0) {
+
+    if (time == 0) {
         $("#start").empty();
         $("#start").append("You got " + wrong + " questions wrong."
             + "<br>" + "You got " + right + "questions correct."
@@ -83,7 +128,7 @@ function setGameOver() {
     console.log("Game over!");
 
 };
-setGameOver();
+
 
 //make an on-click function for the button 
 
@@ -94,7 +139,7 @@ $("#start-button").click(function () {
 
     startGame();
     countDown();
-    
+
 
 
 });

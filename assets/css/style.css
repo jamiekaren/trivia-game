@@ -27,6 +27,11 @@ body {
     font-size: 20px;
   }
 
+  p {
+    text-align: center;
+    size: 30px;
+  }
+
   #top {
     height: 100px;
   }
