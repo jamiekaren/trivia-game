@@ -12,13 +12,13 @@ let questions = [
     {
         question: "Who is the strongest Avenger?",
         possible: ["Hulk", " Thor ", " Black Widow ", " Scarlet Witch"],
-        answer: "Hulk",     
+        answer: 0,
     },
 
     {
         question: "What's Captain Marvel's first name?",
         possible: ["Wanda", " Natasha ", " Pepper ", " Carol"],
-        answer: "Carol",
+        answer: 3,
     },
 
 ]
@@ -38,7 +38,7 @@ let time = 30;
 
 
 function countDown() {
-  
+
     if (time > 0) {
         setTimeout(countDown, 500);
     }
@@ -49,15 +49,27 @@ function countDown() {
     console.log(time);
 };
 
-
-
-
-
+let questionHTML = '';
 //Iterates through object for questions and appends them to the start div
 function startGame() {
+
+    //goes through entire object
     questions.forEach(function (object) {
-        $("#start").append(object.question + "<p>" + object.possible + "</p>");
+
+        //stores the question in this variable
+        questionHTML = '<p>' + questions.question + '</p>';
+
+        //goes through object answers,adds on to it with radio button, answer and a break...
+        questions.possible.forEach(function (answer, i) {
+            questionHTML += '<input type="radio" name="answer"'
+            questionHTML += 'value="' + i + '">'
+            questionHTML += answer + '<br>'
+        });
+
+        //adds new variable data to start div
+        $("#start").append(questionHTML);
     });
+
 
 };
 
@@ -68,12 +80,12 @@ function setGameOver() {
         $("#start").empty();
         $("#start").append("You got " + " questions wrong."
             + "<br>" + "You got " + "questions correct."
-            + "<br>" + "You didn't answer " +  " questions.");
-            console.log("Game over!");
-        
+            + "<br>" + "You didn't answer " + " questions.");
+        console.log("Game over!");
+
     };
 
-    
+
 
 };
 
@@ -90,19 +102,7 @@ $("#start-button").click(function () {
 
 
 });
-// function setUserAnswers() {
-//     let input = $("#question-input").val().trim();
 
-//     answers.push(input);
-
-//     if (answers == questions.answer) {
-//         right++;
-//     }
-//     else if (answers != questions.answer) {
-//         wrong++;
-//     }
-
-// };
 
 
 
