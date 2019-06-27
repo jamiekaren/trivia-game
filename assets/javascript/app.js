@@ -12,23 +12,13 @@ let questions = [
     {
         question: "Who is the strongest Avenger?",
         possible: ["Hulk", " Thor ", " Black Widow ", " Scarlet Witch"],
-        answer: "Hulk",
-        radio_button: function () {
-            this.forEach(function (object) {
-                var radioBtn = $('<input type="radio" name="q1" />');
-                $("#start").append(radioBtn + object.possible);
-
-            });
-
-        },
+        answer: "Hulk",     
     },
 
     {
         question: "What's Captain Marvel's first name?",
         possible: ["Wanda", " Natasha ", " Pepper ", " Carol"],
         answer: "Carol",
-        radio_button: "",
-
     },
 
 ]
@@ -48,7 +38,7 @@ let time = 30;
 
 
 function countDown() {
-
+  
     if (time > 0) {
         setTimeout(countDown, 500);
     }
@@ -62,7 +52,8 @@ function countDown() {
 
 
 
-//Need to add questions to this div
+
+//Iterates through object for questions and appends them to the start div
 function startGame() {
     questions.forEach(function (object) {
         $("#start").append(object.question + "<p>" + object.possible + "</p>");
@@ -70,65 +61,21 @@ function startGame() {
 
 };
 
-
-function setUserAnswers() {
-    let input = $("#question-input").val().trim();
-
-    answers.push(input);
-
-    if (answers == questions.answer) {
-        right++;
-    }
-    else if (answers != questions.answer) {
-        wrong++;
-    }
-
-};
-
-
-// //Need to add questions to this div
-// function startGame() {
-//     questions.forEach(function (object) {
-
-//         $("#start").append(object.question + "<p>");
-//         radio_button(questions);
-//     });
-
-// };
-
-
-
-// function startGame() {
-//     questions.forEach(function (object) {
-
-//         let radioBtn = $('<input type="radio"/>');
-
-//        $("#start").append(object.question + "<p>")
-
-//        $("#start").html(radioBtn).append(obj.possible);
-
-//     //    + object.possible + "</p>");
-//     });
-
-// };
-
-
-
 //Game Over function and end of timer
 function setGameOver() {
 
-    if (time == 0) {
+    if (time === 0) {
         $("#start").empty();
-        $("#start").append("You got " + wrong + " questions wrong."
-            + "<br>" + "You got " + right + "questions correct."
-            + "<br>" + "You didn't answer " + none + " questions."
-        )
+        $("#start").append("You got " + " questions wrong."
+            + "<br>" + "You got " + "questions correct."
+            + "<br>" + "You didn't answer " +  " questions.");
+            console.log("Game over!");
+        
     };
 
-    console.log("Game over!");
+    
 
 };
-
 
 //make an on-click function for the button 
 
@@ -143,4 +90,20 @@ $("#start-button").click(function () {
 
 
 });
+// function setUserAnswers() {
+//     let input = $("#question-input").val().trim();
+
+//     answers.push(input);
+
+//     if (answers == questions.answer) {
+//         right++;
+//     }
+//     else if (answers != questions.answer) {
+//         wrong++;
+//     }
+
+// };
+
+
+
 
