@@ -60,7 +60,7 @@ function startGame() {
         questionHTML = '<p>' + questions.question + '</p>';
 
         //goes through object answers,adds on to it with radio button, answer and a break...
-        questions.possible.forEach(function (answer, i) {
+        object.possible.forEach(function (answer, i) {
             questionHTML += '<input type="radio" name="answer"'
             questionHTML += 'value="' + i + '">'
             questionHTML += answer + '<br>'
