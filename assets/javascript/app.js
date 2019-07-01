@@ -10,16 +10,26 @@ let tonySound = new Audio("assets/sounds/avengers02.mp3");
 
 let questions = [
     {
-        question: "Who is the strongest Avenger?",
-        possible: ["Hulk", " Thor ", " Black Widow ", " Scarlet Witch"],
-        answer: 0,
-    },
+        id: 0,
+        question_text: "Who is the strongest Avenger?",
+        possible_answers: ["Hulk", "Thor", "Black Widow", "Scarlet Witch"],
+        correct_answer: 0,
+        selfPopulate: function() {
+            
+            // Create id variable for the answer section of each question
+            let answerHtmlId = "q" + this.id + "ans";
+            
+            // Create a div (if you want) to hold each question and its answers
+			$("#start").append("<div id=" + answerHtmlId + "><h3>"+ this.question_text +"</h3></div></br>");
+            
+            // Iterate over possible_answers
+            this.possible_answers.forEach(function (answer) {
+                $("#" + answerHtmlId + "").append("<input type=\"radio\" name=\"same\">" + answer + "")
+            });
+        }
+        
 
-    {
-        question: "What's Captain Marvel's first name?",
-        possible: ["Wanda", " Natasha ", " Pepper ", " Carol"],
-        answer: 3,
-    },
+    }
 
 ]
 
@@ -39,14 +49,35 @@ let time = 30;
 
 function countDown() {
 
-    if (time > 0) {
-        setTimeout(countDown, 500);
-    }
-    setGameOver();
-    time--;
+    // if (time > 0) {
+    //     setTimeout(countDown, 1000);
+    // }
+    // setGameOver();
+    // time--;
 
-    $("#counter").html("You have " + time + " seconds remaining left to answer.");
-    console.log(time);
+    // $("#counter").html("You have " + time + " seconds remaining left to answer.");
+    // console.log(time);
+    
+	// Set an interval
+	let interval = setInterval(function() {
+        
+        // Update the UI every 1000 milliseconds (1 second)
+		$("#counter").html("You have " + time + " seconds remaining left to answer.");
+        
+        // Check to see if counter is 0
+		if (time <= 0) {
+            
+			// Change UI to reflect time-over
+			setGameOver();
+			
+			// Counter is 0 so we should stop counting 
+            clearInterval(interval);
+        }
+
+        // Subtract 1 unit from the counter
+		time --;
+
+    }, 1000);
 };
 
 let questionHTML = '';
@@ -55,19 +86,7 @@ function startGame() {
 
     //goes through entire object
     questions.forEach(function (object) {
-
-        //stores the question in this variable
-        questionHTML = '<p>' + questions.question + '</p>';
-
-        //goes through object answers,adds on to it with radio button, answer and a break...
-        object.possible.forEach(function (answer, i) {
-            questionHTML += '<input type="radio" name="answer"'
-            questionHTML += 'value="' + i + '">'
-            questionHTML += answer + '<br>'
-        });
-
-        //adds new variable data to start div
-        $("#start").append(questionHTML);
+        object.showButtons();
     });
 
 
@@ -99,11 +118,4 @@ $("#start-button").click(function () {
     startGame();
     countDown();
 
-
-
 });
-
-
-
-
-
