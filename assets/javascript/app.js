@@ -19,7 +19,7 @@ let questions = [
             // Create id variable for the answer section of each question
             let answerHtmlId = "q" + this.id + "ans";
             
-            // Create a div (if you want) to hold each question and its answers
+            // Create a div to hold each question and its answers
 			$("#start").append("<div id=" + answerHtmlId + "><h3>"+ this.question_text +"</h3></div></br>");
             
             // Iterate over possible_answers
