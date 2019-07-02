@@ -8,11 +8,7 @@ body {
   
   }
 
-  div {
-      border: solid;
-      size: 10px;
-      color: white;
-  }
+
 
   #header, #start, #counter {
     background: rgba(0, 0, 0, 0.7);  
